@@ -10,7 +10,7 @@ class DigitalClockPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DigitalClockBloc()..add(StartClockEvent()),
+      create: (context) => DigitalClockBloc()..add(const StartClockEvent()),
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -112,9 +112,8 @@ class DigitalClockPage extends StatelessWidget {
                       ),
                       itemCount: state.timeZones.length,
                       itemBuilder: (context, index) {
-                        final timezone = state.timeZones[index];
                         return TimeZoneClockCard(
-                          timezone: timezone,
+                          timezone: state.timeZones[index],
                           time: state.times[index],
                           date: state.dates[index],
                         );
@@ -122,6 +121,12 @@ class DigitalClockPage extends StatelessWidget {
                     ),
                   ],
                 ),
+              );
+            }
+
+            if (state is DigitalClockErrorState) {
+              return Center(
+                child: Text('Error: ${state.message}'),
               );
             }
 
