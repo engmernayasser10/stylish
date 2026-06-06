@@ -11,11 +11,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) =>
-          ProductCubit(productRepo: getit<ProductRepo>())
-            ..loadProducts(),
+          ProductCubit(productRepo: getit<ProductRepo>())..fetchProducts(),
       child: Scaffold(
         backgroundColor: const Color(0xffF8F8F8),
-
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -31,7 +29,6 @@ class HomeView extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-
         body: BlocBuilder<ProductCubit, ProductState>(
           builder: (context, state) {
             if (state is ProductLoading) {
@@ -42,11 +39,11 @@ class HomeView extends StatelessWidget {
 
             if (state is ProductError) {
               return Center(
-                child: Text(state.message),
+                child: Text(state.errorMessage),
               );
             }
 
-            if (state is ProductLoaded) {
+            if (state is ProductSuccess) {
               final products = state.products;
 
               if (products.isEmpty) {
@@ -57,8 +54,7 @@ class HomeView extends StatelessWidget {
 
               return SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 16),
 
@@ -69,20 +65,15 @@ class HomeView extends StatelessWidget {
                       ),
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText:
-                              'Search any Product...',
-                          prefixIcon:
-                              const Icon(Icons.search),
+                          hintText: 'Search any Product...',
+                          prefixIcon: const Icon(Icons.search),
                           filled: true,
                           fillColor: Colors.white,
-                          border:
-                              OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
                               12,
                             ),
-                            borderSide:
-                                BorderSide.none,
+                            borderSide: BorderSide.none,
                           ),
                         ),
                       ),
@@ -92,18 +83,15 @@ class HomeView extends StatelessWidget {
 
                     // Banner
                     Container(
-                      margin:
-                          const EdgeInsets.symmetric(
+                      margin: const EdgeInsets.symmetric(
                         horizontal: 16,
                       ),
                       height: 180,
                       decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(
+                        borderRadius: BorderRadius.circular(
                           16,
                         ),
-                        gradient:
-                            const LinearGradient(
+                        gradient: const LinearGradient(
                           colors: [
                             Colors.pink,
                             Colors.orange,
@@ -113,30 +101,22 @@ class HomeView extends StatelessWidget {
                       child: const Padding(
                         padding: EdgeInsets.all(20),
                         child: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment
-                                  .start,
-                          mainAxisAlignment:
-                              MainAxisAlignment
-                                  .center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               '50-40% OFF',
                               style: TextStyle(
-                                color:
-                                    Colors.white,
+                                color: Colors.white,
                                 fontSize: 28,
-                                fontWeight:
-                                    FontWeight
-                                        .bold,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             SizedBox(height: 10),
                             Text(
                               'Now in Product',
                               style: TextStyle(
-                                color:
-                                    Colors.white,
+                                color: Colors.white,
                                 fontSize: 16,
                               ),
                             ),
@@ -148,8 +128,7 @@ class HomeView extends StatelessWidget {
                     const SizedBox(height: 24),
 
                     Padding(
-                      padding:
-                          const EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 16,
                       ),
                       child: Row(
@@ -158,8 +137,7 @@ class HomeView extends StatelessWidget {
                             'Trending Products',
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight:
-                                  FontWeight.bold,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Spacer(),
@@ -172,10 +150,8 @@ class HomeView extends StatelessWidget {
 
                     GridView.builder(
                       shrinkWrap: true,
-                      physics:
-                          const NeverScrollableScrollPhysics(),
-                      padding:
-                          const EdgeInsets.all(16),
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.all(16),
                       itemCount: products.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -184,118 +160,79 @@ class HomeView extends StatelessWidget {
                         mainAxisSpacing: 12,
                         childAspectRatio: 0.62,
                       ),
-                      itemBuilder:
-                          (context, index) {
-                        final product =
-                            products[index];
+                      itemBuilder: (context, index) {
+                        final product = products[index];
 
                         String image = '';
 
-                        if (product['images']
-                                is List &&
-                            product['images']
-                                .isNotEmpty) {
-                          image = product['images']
-                                  [0]
-                              .toString();
+                        if (product['images'] is List &&
+                            product['images'].isNotEmpty) {
+                          image = product['images'][0].toString();
                         }
 
                         return Card(
                           elevation: 3,
-                          shape:
-                              RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius
-                                    .circular(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
                               16,
                             ),
                           ),
                           child: Padding(
-                            padding:
-                                const EdgeInsets
-                                    .all(8),
+                            padding: const EdgeInsets.all(8),
                             child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment
-                                      .start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  child:
-                                      ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.circular(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
                                       12,
                                     ),
-                                    child: image
-                                            .isNotEmpty
+                                    child: image.isNotEmpty
                                         ? Image.network(
                                             image,
-                                            width:
-                                                double.infinity,
+                                            width: double.infinity,
                                             fit: BoxFit.cover,
-                                            errorBuilder:
-                                                (
+                                            errorBuilder: (
                                               context,
                                               error,
                                               stackTrace,
                                             ) {
                                               return const Center(
-                                                child:
-                                                    Icon(
+                                                child: Icon(
                                                   Icons.image,
-                                                  size:
-                                                      40,
+                                                  size: 40,
                                                 ),
                                               );
                                             },
                                           )
                                         : const Center(
-                                            child:
-                                                Icon(
-                                              Icons
-                                                  .image,
-                                              size:
-                                                  40,
+                                            child: Icon(
+                                              Icons.image,
+                                              size: 40,
                                             ),
                                           ),
                                   ),
                                 ),
-
                                 const SizedBox(
                                   height: 8,
                                 ),
-
                                 Text(
-                                  product['title']
-                                          ?.toString() ??
-                                      '',
+                                  product['title']?.toString() ?? '',
                                   maxLines: 2,
-                                  overflow:
-                                      TextOverflow
-                                          .ellipsis,
-                                  style:
-                                      const TextStyle(
-                                    fontWeight:
-                                        FontWeight
-                                            .bold,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-
                                 const SizedBox(
                                   height: 6,
                                 ),
-
                                 Text(
                                   '\$${product['price']}',
-                                  style:
-                                      const TextStyle(
-                                    color:
-                                        Colors.red,
-                                    fontWeight:
-                                        FontWeight
-                                            .bold,
-                                    fontSize:
-                                        16,
+                                  style: const TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ],
