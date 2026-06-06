@@ -7,6 +7,7 @@ import 'package:stylish/Features/auth/data/repos/auth_repo.dart';
 import 'package:stylish/Features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:stylish/core/servises/secure_storage_services.dart';
 import 'package:stylish/core/servises/shared_preferences_services.dart';
+import 'package:stylish/Features/auth/presentation/cubit/login_cubit.dart';
 
 final getit = GetIt.instance;
 Future<void> setupGetIt() async {
@@ -36,5 +37,10 @@ Future<void> setupGetIt() async {
       getit<SecureStorageServices>(),
       getit<SharedPreferencesServices>(),
     ),
+  );
+
+  // Register LoginCubit
+  getit.registerLazySingleton<LoginCubit>(
+    () => LoginCubit(getit<AuthRepo>()),
   );
 }
