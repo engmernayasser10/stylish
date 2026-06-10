@@ -86,7 +86,7 @@ class SignupFormState extends State<SignupForm> {
             hintText: 'Full Name',
             prefixIcon: Icon(
               Icons.person,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               size: 24.sp,
             ),
             keyboardType: TextInputType.name,
@@ -99,7 +99,7 @@ class SignupFormState extends State<SignupForm> {
             hintText: 'Email',
             prefixIcon: Icon(
               Icons.email,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               size: 24.sp,
             ),
             keyboardType: TextInputType.emailAddress,
@@ -113,7 +113,7 @@ class SignupFormState extends State<SignupForm> {
             obscureText: _obscurePassword,
             prefixIcon: Icon(
               Icons.lock,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               size: 24.sp,
             ),
             suffixIcon: IconButton(
@@ -121,7 +121,7 @@ class SignupFormState extends State<SignupForm> {
                 _obscurePassword
                     ? Icons.visibility_outlined
                     : Icons.visibility_off_outlined,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                 size: 20.sp,
               ),
               onPressed: () {
@@ -140,7 +140,7 @@ class SignupFormState extends State<SignupForm> {
             obscureText: _obscureConfirmPassword,
             prefixIcon: Icon(
               Icons.lock,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               size: 24.sp,
             ),
             suffixIcon: IconButton(
@@ -148,7 +148,7 @@ class SignupFormState extends State<SignupForm> {
                 _obscureConfirmPassword
                     ? Icons.visibility_outlined
                     : Icons.visibility_off_outlined,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                 size: 20.sp,
               ),
               onPressed: () {

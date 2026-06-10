@@ -25,14 +25,14 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutes.kLoginRoute,
         builder: (context, state) => BlocProvider(
-          create: (context) => LoginCubit(getit<AuthRepo>()),
+          create: (_) => LoginCubit(getit<AuthRepo>()),
           child: const LoginView(),
         ),
       ),
       GoRoute(
         path: AppRoutes.kSignupRoute,
         builder: (context, state) => BlocProvider(
-          create: (context) => RegisterCubit(authRepo: getit<AuthRepo>()),
+          create: (_) => RegisterCubit(authRepo: getit<AuthRepo>()),
           child: const LoginView(),
         ),
       ),

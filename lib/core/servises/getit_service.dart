@@ -1,13 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stylish/Features/auth/presentation/manager/login/login_cubit.dart';
 import 'package:stylish/core/networking/dio_consumer.dart';
 import 'package:stylish/core/networking/api_consumer.dart';
 import 'package:stylish/Features/auth/data/repos/auth_repo.dart';
 import 'package:stylish/Features/auth/data/repos/auth_repo_implementation.dart';
+import 'package:stylish/Features/home/data/repos/product_repo.dart';
+import 'package:stylish/Features/home/data/repos/product_repo_impl.dart';
 import 'package:stylish/core/servises/secure_storage_services.dart';
 import 'package:stylish/core/servises/shared_preferences_services.dart';
-import 'package:stylish/Features/auth/presentation/cubit/login_cubit.dart';
 
 final getit = GetIt.instance;
 Future<void> setupGetIt() async {
@@ -37,6 +39,10 @@ Future<void> setupGetIt() async {
       getit<SecureStorageServices>(),
       getit<SharedPreferencesServices>(),
     ),
+  );
+
+  getit.registerLazySingleton<ProductRepo>(
+    () => ProductRepoImplementation(),
   );
 
   // Register LoginCubit

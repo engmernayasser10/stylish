@@ -47,11 +47,13 @@ class CustomTextField extends StatelessWidget {
       cursorColor: Theme.of(context).colorScheme.onSurface,
       style: AppTextStyles.regular14.copyWith(
         color: Theme.of(context).colorScheme.onSurface,
+        fontFamily: 'Montserrat',
       ),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: AppTextStyles.regular14.copyWith(
           color: Theme.of(context).colorScheme.onSurface.withValues(alpha: .5),
+          fontFamily: 'Montserrat',
         ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,

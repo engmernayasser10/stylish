@@ -4,4 +4,5 @@ class ApiEndpoints {
   static const String login = 'auth/login';
   static const String profile = 'auth/profile';
   static const String refreshTokens = 'auth/refresh-tokens';
+  static const String products = 'products';
 }

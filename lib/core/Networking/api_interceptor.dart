@@ -110,7 +110,7 @@ class AuthEventBus {
 
   Stream<AuthEvent> get events => _controller.stream;
 
-  get stream => null;
+  Null get stream => null;
 
   void addEvent(AuthEvent event) {
     if (!_controller.isClosed) {

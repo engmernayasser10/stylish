@@ -16,7 +16,7 @@ class LoginNavigation extends StatelessWidget {
           Text(
             'I Already Have an Account',
             style: AppTextStyles.regular14.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
             ),
           ),
           SizedBox(width: 4.w),

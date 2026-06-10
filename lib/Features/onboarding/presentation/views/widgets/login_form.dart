@@ -63,7 +63,7 @@ class LoginFormState extends State<LoginForm> {
             hintText: 'Email',
             prefixIcon: Icon(
               Icons.email,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               size: 24.sp,
             ),
             keyboardType: TextInputType.emailAddress,
@@ -77,7 +77,7 @@ class LoginFormState extends State<LoginForm> {
             obscureText: _obscurePassword,
             prefixIcon: Icon(
               Icons.lock,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               size: 24.sp,
             ),
             suffixIcon: IconButton(
@@ -85,7 +85,7 @@ class LoginFormState extends State<LoginForm> {
                 _obscurePassword
                     ? Icons.visibility_outlined
                     : Icons.visibility_off_outlined,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                 size: 20.sp,
               ),
               onPressed: () {

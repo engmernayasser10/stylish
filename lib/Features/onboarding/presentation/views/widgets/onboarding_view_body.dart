@@ -113,7 +113,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
             width: 260.w,
             height: 260.w,
             decoration: BoxDecoration(
-              color: page.accentColor.withOpacity(0.10),
+              color: page.accentColor.withValues(alpha: 0.10),
               borderRadius: BorderRadius.circular(32.r),
             ),
             child: Center(

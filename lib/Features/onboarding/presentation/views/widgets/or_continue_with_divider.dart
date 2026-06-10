@@ -17,7 +17,7 @@ class OrContinueWithDivider extends StatelessWidget {
           child: Text(
             'OR Continue with',
             style: AppTextStyles.regular14.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
             ),
           ),
         ),

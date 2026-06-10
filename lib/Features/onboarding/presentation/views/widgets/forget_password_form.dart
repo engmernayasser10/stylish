@@ -27,7 +27,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           hintText: 'Enter your email address',
           prefixIcon: Icon(
             Icons.email,
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
             size: 24.sp,
           ),
           keyboardType: TextInputType.emailAddress,
